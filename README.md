@@ -14,7 +14,7 @@ pip install --upgrade tamber
 or
 
 ```sh
-easy_install --upgrade stripe
+easy_install --upgrade tamber
 ```
 
 See http://www.pip-installer.org/en/latest/index.html for instructions
@@ -23,9 +23,6 @@ pip, you can use easy_install instead. If you're not using virtualenv,
 you may have to prefix those commands with `sudo`. You can learn more
 about virtualenv at http://www.virtualenv.org/
 
-To install from source, run:
-
-    python setup.py install
 
 Compatibility
 =============

@@ -11,22 +11,22 @@ class Discover(util.Resource):
 	def _url(cls, command):
 		return cls._get_url('discover', command)
 
-	def getRecommended(self, **params):
+	def recommended(self, **params):
 		keys = {'id', 'number', 'page', 'filter'}
 		self._call_api('GET', self._url('getRecommended'), params, keys)
 
-	def getSimilar(self, **params):
+	def similar(self, **params):
 		keys = {'id', 'number', 'page', 'filter'}
 		self._call_api('GET', self._url('getSimilar'), params, keys)
 
-	def getRecommendedSimilar(self, **params):
+	def recommendedSimilar(self, **params):
 		keys = {'actor', 'item', 'number', 'page', 'filter'}
 		self._call_api('GET', self._url('getRecommendedSimilar'), params, keys)
 
-	def getPopular(self, **params):
+	def popular(self, **params):
 		keys = {'number', 'page', 'filter'}
 		self._call_api('GET', self._url('getPopular'), params, keys)
 
-	def getHot(self, **params):
+	def hot(self, **params):
 		keys = {'number', 'page', 'filter'}
 		self._call_api('GET', self._url('getHot'), params, keys)

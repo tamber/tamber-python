@@ -1,7 +1,3 @@
-# Tamber API Python Client Library
-# Authors:
-# Mark Canning <argusdusty@tamber.com>
-
 from tamber import util
 
 class Discover(util.Resource):

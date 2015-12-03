@@ -16,6 +16,8 @@ class Resource:
 	def _call_api(self, method, url, params=None, keys=None, update=True):
 		args = self._get_args(params, keys)
 		r = api.call_api(method, url, args)
+		if 'error' in r:
+			raise Exception(r['error'])
 		if update:
 			self.update(**r)
 		return self

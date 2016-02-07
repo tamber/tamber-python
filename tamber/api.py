@@ -3,16 +3,19 @@ import json
 import base64
 import tamber
 
+
 PYTHON_VERSION = sys.version_info[0]
 
 if PYTHON_VERSION == 2:
 	from urllib2 import urlopen
 	from urllib2 import Request
 	from urllib import urlencode
+	b64encode = lambda s: base64.b64encode(s.encode('ascii'))
 elif PYTHON_VERSION == 3:
 	from urllib.request import urlopen
 	from urllib.request import Request
 	from urllib.parse import urlencode
+	b64encode = lambda s: base64.b64encode(s.encode('ascii')).decode('ascii')
 
 def call_api(method, url, args):
 	args = (args or {})

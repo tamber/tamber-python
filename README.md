@@ -41,14 +41,14 @@ import tamber
 tamber.api_key = '80r2oX10Uw4XfZSxfh4O'
 
 try:
-	e = tamber.Event.track(
+	event = tamber.Event.track(
 		user='user_rlox8k927z7p',
 		behavior='like',
 		item='item_wmt4fn6o4zlk'
 	)
-	print e
-except tamber.TamberError as e:
-		print e
+	print event
+except tamber.TamberError as err:
+	print err
 ```
 
 Get recommendations:
@@ -65,9 +65,9 @@ try:
 	for rec in recs:
     	print "item:%s  score%s\n" % (rec['item'], rec['score'])
     	
-except tamber.TamberError as e:
-		print e
+except tamber.TamberError as err:
+	print err
 ```
 
-See [test.py](https://github.com/tamber/tamber-python/blob/master/tests/test.py) for more examples.
+See [test.py](https://github.com/tamber/tamber-python/blob/master/test/test.py) for more examples.
 

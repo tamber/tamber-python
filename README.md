@@ -33,17 +33,41 @@ We are compatible with Python 2.6+, Python 3.1+ and PyPy
 Usage
 =====
 
-example.py
+Track Events in real time:
 
 ```python
 import tamber
 
 tamber.api_key = '80r2oX10Uw4XfZSxfh4O'
-item = tamber.Item(id='68753A444D6F', properties={'height': 23.4}, tags=['amazing', 'rustic'], created=1446417346)
-item.create()
 
-print(item.__dict__)
+try:
+	e = tamber.Event.track(
+		user='user_rlox8k927z7p',
+		behavior='like',
+		item='item_wmt4fn6o4zlk'
+	)
+	print e
+except tamber.TamberError as e:
+		print e
 ```
 
-See [examples.py](https://github.com/tamber/tamber-python/blob/master/examples.py) for more examples.
+Get recommendations:
+
+```python
+import tamber
+
+tamber.api_key = '80r2oX10Uw4XfZSxfh4O'
+
+try:
+	recs = tamber.Discover.recommended(
+		user='user_rlox8k927z7p',
+	)
+	for rec in recs:
+    	print "item:%s  score%s\n" % (rec['item'], rec['score'])
+    	
+except tamber.TamberError as e:
+		print e
+```
+
+See [test.py](https://github.com/tamber/tamber-python/blob/master/tests/test.py) for more examples.
 

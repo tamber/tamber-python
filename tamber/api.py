@@ -1,5 +1,7 @@
 import sys
-from tamber import version_str, api_key
+import json
+import base64
+import tamber
 
 PYTHON_VERSION = sys.version_info[0]
 
@@ -14,7 +16,6 @@ elif PYTHON_VERSION == 3:
 
 def call_api(method, url, args):
 	args = (args or {})
-	args['key'] = api_key
 	encoded_params = urlencode(args)
 	data = None
 	headers = dict()
@@ -25,14 +26,21 @@ def call_api(method, url, args):
 			data = data.encode("utf-8")
 	elif method == 'GET':
 		url += '?' + encoded_params
-	headers['User-Agent'] = 'Tamber/Python/%s' % version_str()
+	headers['User-Agent'] = 'Tamber/Python/%s' % tamber.version_str()
+	headers['Authorization'] = 'Basic %s' % base64.b64encode(tamber.get_api_key()+':')
 	req = Request(url, data=data, headers=headers)
+
 	resp = urlopen(req)
 	if PYTHON_VERSION < 3:
-		return json.load(resp)
-	data = resp.readall().decode('utf-8')
-	try:
-		return json.loads(data)
-	except Exception as e:
-		print(data)
-		raise e
+		data = json.load(resp)
+	else:
+		respDecoded = resp.readall().decode('utf-8')
+		try:
+			data = json.loads(respDecoded)
+		except Exception as e:
+			print(data)
+			raise e
+
+	if data['success'] is False:
+		raise tamber.error.TamberError(data['error'])
+	return data['result']

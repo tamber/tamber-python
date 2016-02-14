@@ -38,8 +38,7 @@ from tamber.resource import (
 	Discover,
 	User,
 	Item,
-	Behavior,
-	Property
+	Behavior
 )
 
 from tamber.error import(

@@ -41,7 +41,7 @@ class APIResource():
 		args = cls._get_args(params, keys)
 		return api.call_api(method, url, args)
 
-# item, user, behavior, property
+# item, user, behavior
 class CreateableAPIResource(APIResource):
 
 	@classmethod
@@ -60,8 +60,6 @@ class UpdatableAPIResource(APIResource):
 	@classmethod
 	def update(cls, **params):
 		url = cls.class_method_url('update') 
-		print "update called"
-		print params
 		return cls._call_api('POST', url, params)
 
 # item
@@ -140,7 +138,3 @@ class Item(CreateableAPIResource, UpdatableAPIResource, RemovableAPIResource):
 
 class Behavior(CreateableAPIResource):
 	pass
-
-class Property(CreateableAPIResource):
-	pass
-

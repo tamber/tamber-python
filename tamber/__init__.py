@@ -26,7 +26,7 @@ api_url = 'https://api.tamber.com/v1'
 def get_api_key():
 	return api_key
 
-VERSION = (0, 1) # Tamber API Python Client Library v0.1
+VERSION = (0, 1, 0) # Tamber API Python Client Library v0.1.0
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 
 from tamber.api import (

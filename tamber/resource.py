@@ -118,7 +118,7 @@ class Discover(APIResource):
     @classmethod
     def recommendedSimilar(cls, **params):
         keys = {'user', 'item', 'number', 'page', 'filter', 'test_events'}
-        return cls._call_api('GET', cls._url('recommendedSimilar'), params, keys)
+        return cls._call_api('GET', cls._url('recommended_similar'), params, keys)
 
     @classmethod
     def popular(cls, **params):

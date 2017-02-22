@@ -20,13 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-api_key = None
+project_key = None
+engine_key = None
 api_url = 'https://api.tamber.com/v1'
 
-def get_api_key():
-	return api_key
+def get_project_key():
+	return project_key
 
-VERSION = (0, 1, 0) # Tamber API Python Client Library v0.1.0
+def get_engine_key():
+	return engine_key
+
+VERSION = (0, 1, 1) # Tamber API Python Client Library v0.1.0
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 
 from tamber.api import (

@@ -30,7 +30,7 @@ def call_api(method, url, args):
 	elif method == 'GET':
 		url += '?' + encoded_params
 	headers['User-Agent'] = 'Tamber/Python/%s' % tamber.version_str()
-	headers['Authorization'] = 'Basic %s' % base64.b64encode(tamber.get_api_key()+':')
+	headers['Authorization'] = 'Basic %s' % base64.b64encode(tamber.get_project_key()+':'+tamber.get_engine_key())
 	req = Request(url, data=data, headers=headers)
 
 	resp = urlopen(req)

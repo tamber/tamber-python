@@ -1,6 +1,6 @@
 import tamber
 
-tamber.api_key = '80r2oX10Uw4XfZSxfh4O'
+tamber.project_key = 'Mu6DUPXdDYe98cv5JIfX'
 
 # Track an Event
 try:
@@ -12,6 +12,8 @@ try:
 	print event
 except tamber.TamberError as err:
 	print err
+
+tamber.engine_key = 'SbWYPBNdARfIDa0IIO9L'
 
 # Get Recommendations
 try:

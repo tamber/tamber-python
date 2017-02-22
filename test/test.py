@@ -48,7 +48,8 @@ def partial_test():
 
 print "Running Tests...."
 
-tamber.api_key = 'IVRiX25dr5rsJ0TDdVOD'
+tamber.project_key = 'Mu6DUPXdDYe98cv5JIfX'
+tamber.engine_key = 'SbWYPBNdARfIDa0IIO9L'
 
 print "Basic Test:\n"
 

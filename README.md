@@ -38,7 +38,7 @@ Track Events in real time:
 ```python
 import tamber
 
-tamber.api_key = '80r2oX10Uw4XfZSxfh4O'
+tamber.project_key = 'Mu6DUPXdDYe98cv5JIfX'
 
 try:
 	event = tamber.Event.track(
@@ -56,7 +56,7 @@ Get recommendations:
 ```python
 import tamber
 
-tamber.api_key = '80r2oX10Uw4XfZSxfh4O'
+tamber.engine_key = 'SbWYPBNdARfIDa0IIO9L'
 
 try:
 	recs = tamber.Discover.recommended(

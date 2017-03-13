@@ -107,27 +107,27 @@ class Discover(APIResource):
 
     @classmethod
     def recommended(cls, **params):
-        keys = {'user', 'number', 'page', 'filter', 'test_events'}
+        keys = {'user', 'number', 'page', 'filter', 'test_events', 'get_properties'}
         return cls._call_api('GET', cls._url('recommended'), params, keys)
 
     @classmethod
     def similar(cls, **params):
-        keys = {'item', 'number', 'page', 'filter', 'test_events'}
+        keys = {'item', 'number', 'page', 'filter', 'test_events', 'get_properties'}
         return cls._call_api('GET', cls._url('similar'), params, keys)
 
     @classmethod
     def recommendedSimilar(cls, **params):
-        keys = {'user', 'item', 'number', 'page', 'filter', 'test_events'}
+        keys = {'user', 'item', 'number', 'page', 'filter', 'test_events', 'get_properties'}
         return cls._call_api('GET', cls._url('recommended_similar'), params, keys)
 
     @classmethod
     def popular(cls, **params):
-        keys = {'number', 'page', 'filter'}
+        keys = {'number', 'page', 'filter', 'get_properties'}
         return cls._call_api('GET', cls._url('popular'), params, keys)
 
     @classmethod
     def hot(self, **cls):
-        keys = {'number', 'page', 'filter'}
+        keys = {'number', 'page', 'filter', 'get_properties'}
         return cls._call_api('GET', cls._url('hot'), params, keys)
 
 class User(CreateableAPIResource, UpdatableAPIResource):

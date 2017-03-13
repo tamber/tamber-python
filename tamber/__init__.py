@@ -30,7 +30,7 @@ def get_project_key():
 def get_engine_key():
 	return engine_key
 
-VERSION = (0, 1, 1) # Tamber API Python Client Library v0.1.0
+VERSION = (0, 1, 2) # Tamber API Python Client Library v0.1.0
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 
 from tamber.api import (

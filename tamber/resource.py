@@ -1,6 +1,13 @@
 from tamber import api_url, api
-import urllib
+import sys
 import json
+
+PYTHON_VERSION = sys.version_info[0]
+
+if PYTHON_VERSION == 2:
+	from urllib import quote_plus
+elif PYTHON_VERSION == 3:
+	from urllib.parse import quote_plus
 
 class TamberObject():
 	def __init__(self, *args, **kwargs):
@@ -16,7 +23,7 @@ class TamberJSONEncoder(json.JSONEncoder):
 class APIResource():
 	@classmethod
 	def class_name(cls):
-		return str(urllib.quote_plus(cls.__name__.lower()))
+		return str(quote_plus(cls.__name__.lower()))
 
 	@classmethod
 	def class_method_url(cls, method):

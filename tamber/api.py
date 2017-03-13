@@ -29,6 +29,9 @@ def call_api(method, url, args):
 			data = data.encode("utf-8")
 	elif method == 'GET':
 		url += '?' + encoded_params
+	api_version = tamber.get_api_version()
+	if api_version != None:
+		headers['Tamber-Version'] = api_version
 	headers['User-Agent'] = 'Tamber/Python/%s' % tamber.version_str()
 	headers['Authorization'] = 'Basic %s' % b64encode(tamber.get_project_key()+':'+tamber.get_engine_key())
 	req = Request(url, data=data, headers=headers)

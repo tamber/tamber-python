@@ -82,12 +82,12 @@ class Event(APIResource, TamberObject):
 			params['created_before'] = params['before']
 		if 'since' in params:
 			params['created_since'] = params['since']
-		cls._call_api('POST', cls._url_path('retrieve'), keys, **params)
+		return cls._call_api('POST', cls._url_path('retrieve'), keys, **params)
 	
 	@classmethod
 	def batch(cls, **params):
 		keys = {'events'}
-		cls._call_api('POST', cls._url_path('batch'), keys, **params)
+		return cls._call_api('POST', cls._url_path('batch'), keys, **params)
 
 class Discover(APIResource):
 	name = 'discover'

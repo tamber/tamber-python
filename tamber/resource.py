@@ -141,7 +141,10 @@ class User(CreateableAPIResource, UpdatableAPIResource):
 	pass
 
 class Item(CreateableAPIResource, UpdatableAPIResource, RemovableAPIResource):
-	pass
+	@classmethod
+	def stream(cls, items=None):
+		keys = {'events'}
+		cls._call_api('POST', cls.class_method_url('batch'), params, keys)
 
 class Behavior(CreateableAPIResource):
 	pass

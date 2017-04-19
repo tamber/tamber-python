@@ -7,7 +7,7 @@ setup(
   author = 'Tamber',
   author_email = 'team@tamber.com',
   url = 'https://github.com/tamber/tamber-python',
-  download_url = 'https://github.com/tamber/tamber-python/dist/tamber-0.1.2.tar.gz', 
+  download_url = 'https://pypi.python.org/pypi/tamber', 
   keywords = ['tamber', 'recommendations', 'pytamber', 'backend', 'hosted', 'cloud',
               'collaborative filtering', 'engine', 'suggestion engine', 
               'recommender system', 'suggestions'],

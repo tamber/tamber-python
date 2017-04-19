@@ -19,7 +19,7 @@ def basic_test():
 		d = tamber.Discover.recommended(user='user_jctzgisbru',number=100,)
 		print d
 		for rec in d:
-			print "item:%s  score%s\n" % (rec['item'],rec['score'])
+			print "item:%s  score:%s\n" % (rec['item'],rec['score'])
 	except tamber.TamberError as e:
 		print e
 

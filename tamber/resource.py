@@ -77,7 +77,7 @@ class Event(APIResource, TamberObject):
 
 	@classmethod
 	def retrieve(cls, **params):
-		keys = {'user', 'item', 'created_since', 'created_before', 'number'}
+		keys = {'user', 'item', 'behavior', 'created_since', 'created_before', 'number'}
 		if 'before' in params:
 			params['created_before'] = params['before']
 		if 'since' in params:

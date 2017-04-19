@@ -1,8 +1,7 @@
 import tamber
 
 def basic_test():
-
-	print "event/track\n"
+	print("event/track\n")
 
 	try:
 		tamber.Event.track(
@@ -11,17 +10,17 @@ def basic_test():
 			behavior='mention'
 		)
 	except tamber.TamberError as e:
-		print e
+		print(e)
 
-	print "\ndiscover/recommended\n"
+	print("\ndiscover/recommended\n")
 
 	try:
 		d = tamber.Discover.recommended(user='user_jctzgisbru',number=100,)
-		print d
+		print(d)
 		for rec in d:
 			print "item:%s  score:%s\n" % (rec['item'],rec['score'])
 	except tamber.TamberError as e:
-		print e
+		print(e)
 
 def partial_test():
 	try:
@@ -42,22 +41,20 @@ def partial_test():
 			]
 		)
 	except tamber.TamberError as e:
-		print e
+		print(e)
 
 
-
-print "Running Tests...."
+print("Running Tests...")
 
 tamber.project_key = 'Mu6DUPXdDYe98cv5JIfX'
 tamber.engine_key = 'SbWYPBNdARfIDa0IIO9L'
 
-print "Basic Test:\n"
+print("Basic Test:\n")
 
 basic_test()
 
-print "Partial Test:\n"
+print("Partial Test:\n")
 
 partial_test()
 
-
-print "\n\n=================\nTesting Complete\n=================\n\n"
+print("\n\n=================\nTesting Complete\n=================\n\n")

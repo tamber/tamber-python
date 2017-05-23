@@ -38,7 +38,7 @@ def call_api(method, url, api_url=None, project_key=None, engine_key=None, **par
 	api_version = tamber.get_api_version()
 	if api_version != None:
 		headers['Tamber-Version'] = api_version
-	headers['User-Agent'] = 'Tamber/Python/%s' % tamber.version_str()
+	headers['User-Agent'] = 'Tamber/v1 PythonBindings/%s' % tamber.version_str()
 	headers['Authorization'] = 'Basic %s' % b64encode(project_key+':'+engine_key)
 
 	req = Request(url, data=data, headers=headers)

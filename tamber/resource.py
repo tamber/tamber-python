@@ -63,16 +63,18 @@ class RemovableAPIResource(APIResource):
 
 class Event(APIResource, TamberObject):
 	name = 'event'
-	def __init__(self, user=None, item=None, behavior=None, value=None, created=None):
+	def __init__(self, user=None, item=None, behavior=None, value=None, hit=False, context=None, created=None):
 		self.user = user
 		self.item = item
 		self.behavior = behavior
 		self.value = value
+		self.hit = hit
+		self.context = context
 		self.created = created
 
 	@classmethod
 	def track(cls, **params):
-		keys = {'user', 'item', 'behavior', 'value', 'created'}
+		keys = {'user', 'item', 'behavior', 'value', 'hit', 'context', 'created'}
 		return cls._call_api('POST', cls._url_path('track'), keys, **params)
 
 	@classmethod
@@ -118,6 +120,16 @@ class Discover(APIResource):
 
 class User(CreateableAPIResource, UpdatableAPIResource):
 	name = 'user'
+
+	@classmethod
+	def search(cls, **params):
+		keys = {'filter'}
+		return cls._call_api('GET', cls._url_path('search'), keys, **params)
+
+	@classmethod
+	def merge(cls, **params):
+		keys = {'from', 'to', 'no_create'}
+		return cls._call_api('POST', cls._url_path('merge'), keys, **params)
 
 class Item(CreateableAPIResource, UpdatableAPIResource, RemovableAPIResource):
 	name = 'item'

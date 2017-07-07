@@ -4,11 +4,14 @@ def basic_test():
 	print("event/track\n")
 
 	try:
-		tamber.Event.track(
+		e = tamber.Event.track(
 			user='user_jctzgisbru', 
 			item='item_i5gq90scc1', 
-			behavior='mention'
+			behavior='mention',
+			hit=True,
+			context=["recommended", "detail-view"]
 		)
+		print(e)
 	except tamber.TamberError as e:
 		print(e)
 

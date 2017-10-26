@@ -154,8 +154,8 @@ class Item(CreateableAPIResource, UpdatableAPIResource):
 		return cls._call_api('POST', url, **params)
 
 	@classmethod
-	def remove(cls, **params):
-		url = cls._url_path('remove')
+	def delete(cls, **params):
+		url = cls._url_path('delete')
 		keys = {'id'}
 		return cls._call_api('POST', url, **params)
 

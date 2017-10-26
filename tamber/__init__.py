@@ -35,7 +35,7 @@ def get_engine_key():
 def get_api_version():
 	return api_version
 
-VERSION = (0, 1, 3) # Tamber API Python Client Library v0.1.2
+VERSION = (0, 2, 0) # Tamber API Python Client Library v0.2.0
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 api_url = 'https://api.tamber.com/v1'
 
@@ -51,7 +51,8 @@ from tamber.resource import (
 	Discover,
 	User,
 	Item,
-	Behavior
+	Behavior,
+	GetRecs
 )
 
 from tamber.error import(

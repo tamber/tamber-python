@@ -23,7 +23,7 @@ class APIResource():
 	@classmethod
 	def _flatten_args(cls, keys=None, **params):
 		for k in params:
-			if isinstance(params[k], dict) or isinstance(params[k], list):
+			if isinstance(params[k], dict) or isinstance(params[k], list) or isinstance(params[k], TamberObject):
 				params[k] = json.dumps(params[k], cls=TamberJSONEncoder)
 		if keys:
 			reserved = {'api_url', 'project_key', 'engine_key'}
@@ -39,27 +39,30 @@ class APIResource():
 class CreateableAPIResource(APIResource):
 	@classmethod
 	def create(cls, **params):
-		url = cls._url_path('create') 
+		url = cls._url_path('create')
 		return cls._call_api('POST', url, **params)
 
 	@classmethod
 	def retrieve(cls, **params):
-		url = cls._url_path('retrieve') 
+		url = cls._url_path('retrieve')
 		return cls._call_api('GET', url, **params)
 
 # item, user
 class UpdatableAPIResource(APIResource):
 	@classmethod
 	def update(cls, **params):
-		url = cls._url_path('update') 
+		url = cls._url_path('update')
 		return cls._call_api('POST', url, **params)
 
-# item
-class RemovableAPIResource(APIResource):
-	@classmethod
-	def remove(cls, **params):
-		url = cls._url_path('remove') 
-		return cls._call_api('POST', url, **params)
+# event/track, user/create, user/update, user/retrieve
+class GetRecs(TamberObject):
+	def __init__(self, number=None, page=None, exclude_items=None, variability=None, filter=None, get_properties=None):
+		self.number = number
+		self.page = page
+		self.exclude_items = exclude_items
+		self.variability = variability
+		self.filter = filter
+		self.get_properties = get_properties
 
 class Event(APIResource, TamberObject):
 	name = 'event'
@@ -93,6 +96,11 @@ class Event(APIResource, TamberObject):
 
 class Discover(APIResource):
 	name = 'discover'
+	@classmethod
+	def next(cls, **params):
+		keys = {'user', 'item', 'number', 'exclude_items', 'variability', 'filter', 'get_properties'}
+		return cls._call_api('GET', cls._url_path('next'), keys, **params)
+
 	@classmethod
 	def recommended(cls, **params):
 		keys = {'user', 'number', 'page', 'filter', 'test_events', 'get_properties'}
@@ -131,8 +139,25 @@ class User(CreateableAPIResource, UpdatableAPIResource):
 		keys = {'from', 'to', 'no_create'}
 		return cls._call_api('POST', cls._url_path('merge'), keys, **params)
 
-class Item(CreateableAPIResource, UpdatableAPIResource, RemovableAPIResource):
+class Item(CreateableAPIResource, UpdatableAPIResource):
 	name = 'item'
+	@classmethod
+	def hide(cls, **params):
+		url = cls._url_path('hide')
+		keys = {'id'}
+		return cls._call_api('POST', url, **params)
+
+	@classmethod
+	def unhide(cls, **params):
+		url = cls._url_path('unhide')
+		keys = {'id'}
+		return cls._call_api('POST', url, **params)
+
+	@classmethod
+	def remove(cls, **params):
+		url = cls._url_path('remove')
+		keys = {'id'}
+		return cls._call_api('POST', url, **params)
 
 class Behavior(CreateableAPIResource):
 	name = 'behavior'

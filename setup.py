@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'tamber',
   packages = ['tamber'],
-  version = '0.1.3',
+  version = '0.2.0',
   description = 'Tamber is the easiest way to put head-scratchingly accurate, real time recommendations in your app.  See https://tamber.com for details.',
   author = 'Tamber',
   author_email = 'team@tamber.com',
@@ -25,6 +25,7 @@ setup(
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ]

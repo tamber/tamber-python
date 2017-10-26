@@ -18,16 +18,16 @@ def basic_test():
 	print("\ndiscover/recommended\n")
 
 	try:
-		d = tamber.Discover.recommended(user='user_jctzgisbru',number=100,)
+		d = tamber.Discover.next(user='user_jctzgisbru',item='item_i5gq90scc1',number=100,variability=0.2)
 		print(d)
 		for rec in d:
-			print "item:%s  score:%s\n" % (rec['item'],rec['score'])
+			print("item:%s  score:%s\n" % (rec['item'],rec['score']))
 	except tamber.TamberError as e:
 		print(e)
 
 def partial_test():
 	try:
-		tamber.Event.batch(
+		print(tamber.Event.batch(
 			events=[
 				tamber.Event(
 					user='user_fwu592pwmo', 
@@ -42,7 +42,7 @@ def partial_test():
 					value= 1
 				)
 			]
-		)
+		))
 	except tamber.TamberError as e:
 		print(e)
 

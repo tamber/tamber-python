@@ -15,10 +15,21 @@ def basic_test():
 	except tamber.TamberError as e:
 		print(e)
 
+
 	print("\ndiscover/recommended\n")
 
 	try:
-		d = tamber.Discover.next(user='user_jctzgisbru',item='item_i5gq90scc1',number=100,variability=0.2)
+		d = tamber.Discover.recommended(user='user_jctzgisbru',number=10)
+		print(d)
+		for rec in d:
+			print("item:%s  score:%s\n" % (rec['item'],rec['score']))
+	except tamber.TamberError as e:
+		print(e)
+
+	print("\ndiscover/next\n")
+
+	try:
+		d = tamber.Discover.next(user='user_jctzgisbru',item='item_i5gq90scc1',number=20)
 		print(d)
 		for rec in d:
 			print("item:%s  score:%s\n" % (rec['item'],rec['score']))
@@ -27,21 +38,32 @@ def basic_test():
 
 def partial_test():
 	try:
-		print(tamber.Event.batch(
-			events=[
-				tamber.Event(
-					user='user_fwu592pwmo', 
-					item='item_u9nlytt3w5', 
-					behavior='mention',
-					value=1
-				),
-				tamber.Event(
-					user='user_jctzgisbru', 
-					item='item_i5gq90scc1', 
-					behavior='mention',
-					value= 1
-				)
-			]
+		print(tamber.Item.create(
+			id='item_faa666arma',
+			properties={
+				'clothing_type': 'pants',
+				'stock':         90,
+			},
+			tags=['casual', 'feminine']
+		))
+	except tamber.TamberError as e:
+		print(e)
+
+	try:
+		print(tamber.Item.retrieve(
+			id='item_faa666arma',
+		))
+	except tamber.TamberError as e:
+		print(e)
+
+	try:
+		print(tamber.Item.update(
+			id='item_faa666arma',
+			updates={
+				'add': {
+					'properties': {'stock': 89}
+				}
+			}
 		))
 	except tamber.TamberError as e:
 		print(e)

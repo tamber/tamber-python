@@ -54,10 +54,6 @@ except tamber.TamberError as err:
 Get recommendations:
 
 ```python
-import tamber
-
-tamber.engine_key = 'SbWYPBNdARfIDa0IIO9L'
-
 try:
 	recs = tamber.Discover.recommended(
 		user='user_rlox8k927z7p',

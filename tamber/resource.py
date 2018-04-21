@@ -54,6 +54,12 @@ class UpdatableAPIResource(APIResource):
 		url = cls._url_path('update')
 		return cls._call_api('POST', url, **params)
 
+class ListableAPIResource(APIResource):
+	@classmethod
+	def list(cls, **params):
+		url = cls._url_path('list')
+		return cls._call_api('POST', url, **params)
+
 # event/track, user/create, user/update, user/retrieve
 class GetRecs(TamberObject):
 	def __init__(self, number=None, page=None, exclude_items=None, variability=None, filter=None, get_properties=None):
@@ -66,18 +72,18 @@ class GetRecs(TamberObject):
 
 class Event(APIResource, TamberObject):
 	name = 'event'
-	def __init__(self, user=None, item=None, behavior=None, value=None, hit=False, context=None, created=None):
+	def __init__(self, user=None, item=None, behavior=None, amount=None, hit=False, context=None, created=None):
 		self.user = user
 		self.item = item
 		self.behavior = behavior
-		self.value = value
+		self.amount = amount
 		self.hit = hit
 		self.context = context
 		self.created = created
 
 	@classmethod
 	def track(cls, **params):
-		keys = {'user', 'item', 'behavior', 'value', 'hit', 'context', 'created'}
+		keys = {'user', 'item', 'behavior', 'amount', 'hit', 'context', 'created'}
 		return cls._call_api('POST', cls._url_path('track'), keys, **params)
 
 	@classmethod
@@ -94,27 +100,45 @@ class Event(APIResource, TamberObject):
 		keys = {'events'}
 		return cls._call_api('POST', cls._url_path('batch'), keys, **params)
 
+	# Meta methods
+	@classmethod
+	def metaLike(cls, **params):
+		keys = {'user', 'property', 'value', 'amount'}
+		return cls._call_api('POST', cls._url_path('track'), keys, **params)
+
+	@classmethod
+	def metaUnlike(cls, **params):
+		keys = {'user', 'property', 'value'}
+		return cls._call_api('POST', cls._url_path('track'), keys, **params)
+
+
 class Discover(APIResource):
 	name = 'discover'
-	@classmethod
-	def next(cls, **params):
-		keys = {'user', 'item', 'number', 'exclude_items', 'variability', 'filter', 'get_properties'}
-		return cls._call_api('GET', cls._url_path('next'), keys, **params)
 
 	@classmethod
 	def recommended(cls, **params):
-		keys = {'user', 'number', 'page', 'filter', 'test_events', 'get_properties'}
+		keys = {'user', 'number', 'exclude_items', 'variability', 'filter', 'get_properties', 'continuation', 'no_create'}
 		return cls._call_api('GET', cls._url_path('recommended'), keys, **params)
 
 	@classmethod
-	def similar(cls, **params):
-		keys = {'item', 'number', 'page', 'filter', 'test_events', 'get_properties'}
-		return cls._call_api('GET', cls._url_path('similar'), keys, **params)
+	def next(cls, **params):
+		keys = {'user', 'item', 'number', 'exclude_items', 'variability', 'filter', 'get_properties', 'continuation', 'no_create'}
+		return cls._call_api('GET', cls._url_path('next'), keys, **params)
 
 	@classmethod
-	def recommendedSimilar(cls, **params):
-		keys = {'user', 'item', 'number', 'page', 'filter', 'test_events', 'get_properties'}
-		return cls._call_api('GET', cls._url_path('recommended_similar'), keys, **params)
+	def weekly(cls, **params):
+		keys = {'user', 'number', 'exclude_items', 'filter', 'get_properties', 'no_create'}
+		return cls._call_api('GET', cls._url_path('popular'), keys, **params)
+
+	@classmethod
+	def daily(cls, **params):
+		keys = {'user', 'number', 'exclude_items', 'filter', 'get_properties', 'no_create'}
+		return cls._call_api('GET', cls._url_path('popular'), keys, **params)
+
+	@classmethod
+	def meta(cls, **params):
+		keys = {'property', 'user', 'item', 'number', 'variability', 'no_create'}
+		return cls._call_api('GET', cls._url_path('popular'), keys, **params)
 
 	@classmethod
 	def popular(cls, **params):
@@ -126,7 +150,28 @@ class Discover(APIResource):
 		keys = {'number', 'page', 'filter', 'get_properties'}
 		return cls._call_api('GET', cls._url_path('hot'), keys, **params)
 
-class User(CreateableAPIResource, UpdatableAPIResource):
+	@classmethod
+	def uac(cls, **params):
+		keys = {'number', 'page', 'filter', 'get_properties'}
+		return cls._call_api('GET', cls._url_path('uac'), keys, **params)
+
+	@classmethod
+	def basicRecommended(cls, **params):
+		keys = {'user', 'number', 'page', 'filter', 'test_events', 'get_properties'}
+		return cls._call_api('GET', cls._url_path('basic/recommended'), keys, **params)
+		
+	@classmethod
+	def basicSimilar(cls, **params):
+		keys = {'item', 'number', 'page', 'filter', 'test_events', 'get_properties'}
+		return cls._call_api('GET', cls._url_path('basic/similar'), keys, **params)
+
+	@classmethod
+	def basicRecommendedSimilar(cls, **params):
+		keys = {'user', 'item', 'number', 'page', 'filter', 'test_events', 'get_properties'}
+		return cls._call_api('GET', cls._url_path('basic/recommended_similar'), keys, **params)
+
+
+class User(CreateableAPIResource, UpdatableAPIResource, ListableAPIResource):
 	name = 'user'
 
 	@classmethod
@@ -139,7 +184,7 @@ class User(CreateableAPIResource, UpdatableAPIResource):
 		keys = {'from', 'to', 'no_create'}
 		return cls._call_api('POST', cls._url_path('merge'), keys, **params)
 
-class Item(CreateableAPIResource, UpdatableAPIResource):
+class Item(CreateableAPIResource, UpdatableAPIResource, ListableAPIResource):
 	name = 'item'
 	@classmethod
 	def hide(cls, **params):

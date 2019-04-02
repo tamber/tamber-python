@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 
-# Copyright (c) 2015 Tamber, Inc.
+# Copyright (c) 2019 Tamber, Inc.
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,36 +25,36 @@ engine_key = None
 api_version = None
 
 def get_project_key():
-	if project_key is None: return ""
-	return project_key
+    if project_key is None: return ""
+    return project_key
 
 def get_engine_key():
-	if engine_key is None: return ""
-	return engine_key
+    if engine_key is None: return ""
+    return engine_key
 
 def get_api_version():
-	return api_version
+    return api_version
 
-VERSION = (0, 2, 1) # Tamber API Python Client Library v0.2.1
+VERSION = (0, 2, 2) # Tamber API Python Client Library v0.2.2
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 api_url = 'https://api.tamber.com/v1'
 
 def get_api_url():
-	return api_url
+    return api_url
 
 from tamber.api import (
-	call_api
+    call_api
 )
 
 from tamber.resource import (
-	Event,
-	Discover,
-	User,
-	Item,
-	Behavior,
-	GetRecs
+    Event,
+    Discover,
+    User,
+    Item,
+    Behavior,
+    GetRecs
 )
 
 from tamber.error import(
-	TamberError
+    TamberError
 )

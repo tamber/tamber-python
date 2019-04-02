@@ -1,14 +1,14 @@
 import json
 
 class Filter(dict):
-	def __init__(self, function=None, *args):
-		if function == 'property':
-			self[function] = args[0]
-		else:
-			self[function] = list(args)
+    def __init__(self, function=None, *args):
+        if function == 'property':
+            self[function] = args[0]
+        else:
+            self[function] = list(args)
 
-	def __str__(self):
-		return json.dumps(self)
+    def __str__(self):
+        return json.dumps(self)
 
 And = lambda *args: Filter('and', *args)
 Or = lambda *args: Filter('or', *args)

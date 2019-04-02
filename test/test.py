@@ -9,7 +9,10 @@ def basic_test():
 			item='item_i5gq90scc1', 
 			behavior='mention',
 			hit=True,
-			context=["recommended", "detail-view"]
+			context={
+				"page": "detail-view",
+				"section": "recommended"
+			}
 		)
 		print(e)
 	except tamber.TamberError as e:
@@ -65,6 +68,11 @@ def partial_test():
 				}
 			}
 		))
+	except tamber.TamberError as e:
+		print(e)
+
+	try:
+		print(tamber.User.search(filter={'age': 30}))
 	except tamber.TamberError as e:
 		print(e)
 

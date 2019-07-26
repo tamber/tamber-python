@@ -40,7 +40,7 @@ class APIResource():
             if isinstance(params[k], dict) or isinstance(params[k], list) or isinstance(params[k], TamberObject):
                 params[k] = json.dumps(params[k], cls=TamberJSONEncoder)
         if keys:
-            reserved = {'api_url', 'project_key', 'engine_key'}
+            reserved = {'api_url', 'project_key', 'engine_key', 'timeout'}
             return dict((k, params[k]) for k in params if k in keys or k in reserved)
         return params
 

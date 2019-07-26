@@ -4,8 +4,7 @@ You can sign up for a Tamber account at https://tamber.com.
 
 For full API documentation, refer to https://tamber.com/docs/api.
 
-Installation
-============
+## Installation
 
 ```sh
 pip install --upgrade tamber
@@ -24,14 +23,12 @@ you may have to prefix those commands with `sudo`. You can learn more
 about virtualenv at http://www.virtualenv.org/
 
 
-Compatibility
-=============
+## Compatibility
 
 We are compatible with Python 2.6+, Python 3.1+ and PyPy
 
 
-Usage
-=====
+## Usage
 
 Track Events in real time:
 
@@ -63,6 +60,15 @@ try:
     	
 except tamber.TamberError as err:
 	print err
+```
+
+#### Timeout Configuration
+
+
+Timeouts are configurable:
+
+```python
+tamber.timeout = 0.7  # timeout is in seconds
 ```
 
 See [test.py](https://github.com/tamber/tamber-python/blob/master/test/test.py) for more examples.

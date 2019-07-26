@@ -23,6 +23,7 @@
 project_key = None
 engine_key = None
 api_version = None
+timeout = 2.
 
 def get_project_key():
     if project_key is None: return ""
@@ -35,7 +36,10 @@ def get_engine_key():
 def get_api_version():
     return api_version
 
-VERSION = (0, 2, 2) # Tamber API Python Client Library v0.2.2
+def get_timeout():
+    return timeout
+
+VERSION = (0, 2, 3) # Tamber API Python Client Library v0.2.3
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 api_url = 'https://api.tamber.com/v1'
 

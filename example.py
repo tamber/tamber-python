@@ -21,7 +21,7 @@ try:
 		user='user_rlox8k927z7p',
 	)
 	for rec in recs:
-    	print("item:%s  score%s\n" % (rec['item'], rec['score']))
-    	
+		print('item:%s  score%s\n' % (rec['item'], rec['score']))
+	
 except tamber.TamberError as err:
 	print(err)

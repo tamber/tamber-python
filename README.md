@@ -38,28 +38,28 @@ import tamber
 tamber.project_key = 'Mu6DUPXdDYe98cv5JIfX'
 
 try:
-	event = tamber.Event.track(
-		user='user_rlox8k927z7p',
-		behavior='like',
-		item='item_wmt4fn6o4zlk'
-	)
-	print event
+    event = tamber.Event.track(
+        user='user_rlox8k927z7p',
+        behavior='like',
+        item='item_wmt4fn6o4zlk'
+    )
+    print event
 except tamber.TamberError as err:
-	print err
+    print err
 ```
 
 Get recommendations:
 
 ```python
 try:
-	recs = tamber.Discover.recommended(
-		user='user_rlox8k927z7p',
-	)
-	for rec in recs:
-    	print "item:%s  score%s\n" % (rec['item'], rec['score'])
-    	
+    recs = tamber.Discover.recommended(
+        user='user_rlox8k927z7p',
+    )
+    for rec in recs:
+        print "item:%s  score%s\n" % (rec['item'], rec['score'])
+        
 except tamber.TamberError as err:
-	print err
+    print err
 ```
 
 #### Timeout Configuration
@@ -69,6 +69,16 @@ Timeouts are configurable:
 
 ```python
 tamber.timeout = 0.7  # timeout is in seconds
+
+try:
+    tamber.Event.track(
+        user='user_rlox8k927z7p',
+        behavior='like',
+        item='item_wmt4fn6o4zlk'
+    )
+except tamber.TamberError as err:
+    if err.is_timed_out_error:
+        # handle timeout
 ```
 
 See [test.py](https://github.com/tamber/tamber-python/blob/master/test/test.py) for more examples.

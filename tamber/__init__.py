@@ -39,7 +39,7 @@ def get_api_version():
 def get_timeout():
     return timeout
 
-VERSION = (0, 2, 3) # Tamber API Python Client Library v0.2.3
+VERSION = (0, 2, 4) # Tamber API Python Client Library v0.2.3
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 api_url = 'https://api.tamber.com/v1'
 

@@ -142,17 +142,17 @@ class Discover(APIResource):
     @classmethod
     def weekly(cls, **params):
         keys = {'user', 'number', 'exclude_items', 'filter', 'get_properties', 'no_create'}
-        return cls._call_api('GET', cls._url_path('popular'), keys, **params)
+        return cls._call_api('GET', cls._url_path('weekly'), keys, **params)
 
     @classmethod
     def daily(cls, **params):
         keys = {'user', 'number', 'exclude_items', 'filter', 'get_properties', 'no_create'}
-        return cls._call_api('GET', cls._url_path('popular'), keys, **params)
+        return cls._call_api('GET', cls._url_path('daily'), keys, **params)
 
     @classmethod
     def meta(cls, **params):
         keys = {'property', 'user', 'item', 'number', 'variability', 'no_create'}
-        return cls._call_api('GET', cls._url_path('popular'), keys, **params)
+        return cls._call_api('GET', cls._url_path('meta'), keys, **params)
 
     @classmethod
     def popular(cls, **params):

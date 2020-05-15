@@ -165,6 +165,12 @@ class Discover(APIResource):
         return cls._call_api('GET', cls._url_path('hot'), keys, **params)
 
     @classmethod
+    def trending(cls, **params):
+        """ Beta testing """
+        keys = {'period', 'period_mode', 'number', 'page', 'get_properties'}
+        return cls._call_api('GET', cls._url_path('trending'), keys, **params)
+
+    @classmethod
     def uac(cls, **params):
         keys = {'number', 'page', 'filter', 'get_properties'}
         return cls._call_api('GET', cls._url_path('uac'), keys, **params)

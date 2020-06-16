@@ -68,6 +68,12 @@ class UpdatableAPIResource(APIResource):
         url = cls._url_path('update')
         return cls._call_api('POST', url, **params)
 
+class SaveableAPIResource(APIResource):
+    @classmethod
+    def save(cls, **params):
+        url = cls._url_path('save')
+        return cls._call_api('POST', url, **params)
+
 class ListableAPIResource(APIResource):
     @classmethod
     def list(cls, **params):
@@ -206,7 +212,7 @@ class Discover(APIResource):
         return cls._call_api('GET', cls._url_path('basic/recommended_similar'), keys, **params)
 
 
-class User(CreateableAPIResource, UpdatableAPIResource, ListableAPIResource):
+class User(CreateableAPIResource, SaveableAPIResource, ListableAPIResource):
     name = 'user'
 
     @classmethod
@@ -216,13 +222,24 @@ class User(CreateableAPIResource, UpdatableAPIResource, ListableAPIResource):
         return cls._call_api('GET', cls._url_path('list'), keys, **params)
 
     @classmethod
+    @deprecated
+    def update(cls, **params):
+        cls.save(**params)
+
+    @classmethod
     def merge(cls, **params):
         keys = {'from', 'to', 'no_create'}
         return cls._call_api('POST', cls._url_path('merge'), keys, **params)
 
-class Item(CreateableAPIResource, UpdatableAPIResource, ListableAPIResource):
+class Item(CreateableAPIResource, SaveableAPIResource, UpdatableAPIResource, ListableAPIResource):
     name = 'item'
     
+    @classmethod
+    def batch(cls, **params):
+        url = cls._url_path('batch')
+        keys = {'items', 'mode'}
+        return cls._call_api('POST', url, **params)
+
     @classmethod
     def hide(cls, **params):
         url = cls._url_path('hide')

@@ -137,12 +137,12 @@ class Discover(APIResource):
 
     @classmethod
     def recommended(cls, **params):
-        keys = {'user', 'number', 'exclude_items', 'variability', 'filter', 'get_properties', 'continuation', 'continuation_key', 'no_create'}
+        keys = {'user', 'number', 'exclude_items', 'variability', 'filter', 'get_properties', 'continuation', 'continuation_key', 'no_create', 'context'}
         return cls._call_api('GET', cls._url_path('recommended'), keys, **params)
 
     @classmethod
     def next(cls, **params):
-        keys = {'user', 'item', 'number', 'exclude_items', 'variability', 'filter', 'get_properties', 'continuation', 'continuation_key', 'no_create'}
+        keys = {'user', 'item', 'number', 'exclude_items', 'variability', 'filter', 'get_properties', 'continuation', 'continuation_key', 'no_create', 'context'}
         return cls._call_api('GET', cls._url_path('next'), keys, **params)
 
     @classmethod

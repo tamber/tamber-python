@@ -16,7 +16,6 @@ elif PYTHON_VERSION == 3:
     b64encode = lambda s: base64.b64encode(s.encode('ascii')).decode('ascii')
 
 def call_api(method, url, api_url=None, project_key=None, engine_key=None, timeout=None, **params):
-    print('params: {}'.format(params))
     if api_url is None:
         api_url = tamber.get_api_url()
     if project_key is None:

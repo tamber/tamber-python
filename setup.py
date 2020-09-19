@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'tamber',
   packages = ['tamber'],
-  version = '0.2.6',
+  version = '0.2.7',
   description = 'Tamber is the easiest way to put head-scratchingly accurate, real time recommendations in your app.  See https://tamber.com for details.',
   author = 'Tamber',
   author_email = 'team@tamber.com',

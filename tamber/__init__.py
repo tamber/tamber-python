@@ -39,7 +39,7 @@ def get_api_version():
 def get_timeout():
     return timeout
 
-VERSION = (0, 2, 6)
+VERSION = (0, 2, 7)
 version_str = lambda: 'v' + '.'.join(str(x) for x in VERSION)
 api_url = 'https://api.tamber.com/v1'
 
